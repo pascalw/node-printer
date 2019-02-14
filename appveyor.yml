@@ -44,8 +44,8 @@ build: OFF
 test: OFF
 deploy: OFF
 
-# artifacts:
-#   - path: 'build\stage\**\*.tar.gz'
+artifacts:
+  - path: 'build\stage\**\*.tar.gz'
 
 branches:
   only:
