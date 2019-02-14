@@ -27,7 +27,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "preinstall": "npm install --no-package-lock --no-save node-pre-gyp",
+    "preinstall": "npm install --no-package-lock node-pre-gyp",
     "install": "node-pre-gyp install --fallback-to-build",
     "build": "node-pre-gyp rebuild",
     "test": "nodeunit test"
