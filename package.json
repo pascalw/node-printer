@@ -27,20 +27,23 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "preinstall": "npm install node-pre-gyp",
-    "install": "node-pre-gyp install --fallback-to-build",
+    "preinstall": "npm install --no-package-lock node-pre-gyp",
+    "install": "node-pre-gyp install",
+    "build": "node-pre-gyp rebuild",
     "test": "nodeunit test"
   },
   "binary": {
     "module_name": "node_printer",
     "module_path": "./lib/",
-    "host": "https://github.com/tojocky/node-printer/releases/download/",
-    "remote_path": "{version}"
+    "host": "https://share.pascalw.me/files/public/wuunder/node-printer/"
   },
   "licenses": [
     {
       "type": "BSD"
     }
   ],
-  "main": "./lib/printer"
+  "main": "./lib/printer",
+  "dependencies": {
+    "node-pre-gyp": "^0.12.0"
+  }
 }
