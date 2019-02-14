@@ -13,47 +13,39 @@ clone_folder: c:\projects\node-printer
 # fix lineendings in Windows
 init:
   - git config --global core.autocrlf input
-  - git config --global user.name "Ion Lupascu"
-  - git config --global user.email ionlupascu@gmail.com
 
-# what combinations to test
 environment:
-  matrix:
-    # Node.js
-    - nodejs_version: "0.10"
-    - nodejs_version: "0.12"
-    - nodejs_version: "4.4"
-    - nodejs_version: "5.8"
-    - nodejs_version: "6.9"
-      build_electron: "true"
+  global:
+    electron_version: 4.0.4
+#   matrix:
+#     # Node.js
+#     - nodejs_version: "0.10"
+#     - nodejs_version: "0.12"
+#     - nodejs_version: "4.4"
+#     - nodejs_version: "5.8"
+#     - nodejs_version: "6.9"
+#       build_electron: "true"
 
-matrix:
-  fast_finish: true
-  allow_failures:
-    - nodejs_version: "0.10"
+# matrix:
+#   fast_finish: true
+#   allow_failures:
+#     - nodejs_version: "0.10"
 
 # Get the latest stable version of Node 0.STABLE.latest
 install:
-  - ps: Install-Product node $env:nodejs_version x64
+  - ps: Install-Product node 10 x64
   - cmd: SET PATH=c:\python27;%PATH%
   - cmd: SET JOBS=4
   - cmd: SET BUILD_ONLY=true
   - npm install -g node-gyp node-pre-gyp
-  - npm install --build-from-source --msvs_version=2013
+  - ps: ./tools/buildElectronWindows.ps1 $env:electron_version
 
-test_script:
-  - node --version
-  - npm --version
-  - npm test
+build: OFF
+test: OFF
+deploy: OFF
 
-after_test:
-  - node-gyp clean
-  - ps: ./tools/buildWindows.ps1
-
-build: off
-
-artifacts:
-  - path: 'build\stage\**\*.tar.gz'
+# artifacts:
+#   - path: 'build\stage\**\*.tar.gz'
 
 branches:
   only:
