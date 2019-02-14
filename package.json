@@ -28,7 +28,7 @@
   },
   "scripts": {
     "preinstall": "npm install --no-package-lock --no-save node-pre-gyp",
-    "install": "node-pre-gyp install",
+    "install": "node-pre-gyp install --fallback-to-build",
     "build": "node-pre-gyp rebuild",
     "test": "nodeunit test"
   },
